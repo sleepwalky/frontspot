@@ -2,6 +2,6 @@
   "short_name": "FrontSpot",
   "name": "FrontSpot Map Notifier",
   "background_color": "#2196F3",
-  "gcm_sender_id": "74389515745",
+  "gcm_sender_id": "103953800507",
   "start_url": "index.html"
 }
