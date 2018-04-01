@@ -95,7 +95,6 @@ limitations under the License.
       icon: '/firebase-logo.png',
       sound: '/imperial-march.mp3'
     };
-    navigator.serviceWorker.controller.postMessage({'hello': 'world'});
     navigator.serviceWorker.ready.then(function(serviceWorker) {
     return serviceWorker.showNotification(notificationTitle, notificationOptions);
 
