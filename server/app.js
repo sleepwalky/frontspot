@@ -12,7 +12,7 @@ app.get('/check', (req, res) => {
     res.json('hi!');
 })
 
-app.post('/notify', (req, res) => {
+app.get('/notify', (req, res) => {
     pushNotification(_.uniq(subs));
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Headers', 'origin, content-type, accept');
