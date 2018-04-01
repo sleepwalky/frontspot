@@ -20,7 +20,7 @@ app.post('/notify', (req, res) => {
 app.get('/token/:id', (req, res) => {
     console.log('Received token: ' + req.params.id)
     subs.push(req.params.id);
-    res.send(req.params.id);
+    res.text('Received token: ' + req.params.id);
 });
 
 const port = process.env.PORT || 8000;
