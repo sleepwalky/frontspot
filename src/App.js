@@ -19,8 +19,8 @@ class App extends Component {
             withGoogleMap
           )(props =>
             <GoogleMap
-              defaultZoom={8}
-              defaultCenter={new window.google.maps.LatLng(-34.397, 150.644)}
+              defaultZoom={18}
+              defaultCenter={new window.google.maps.LatLng(53.928285,27.6853224)}
             >
               <DrawingManager
                 defaultDrawingMode={window.google.maps.drawing.OverlayType.CIRCLE}
