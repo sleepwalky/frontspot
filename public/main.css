@@ -52,3 +52,7 @@ h3 {
   padding-left: 50px;
   color: white;
 }
+
+.leaflet-container {
+    height: 400px;
+}
