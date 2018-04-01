@@ -20,6 +20,8 @@ app.post('/notify', (req, res) => {
 app.get('/token/:id', (req, res) => {
     console.log('Received token: ' + req.params.id)
     subs.push(req.params.id);
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Headers', 'origin, content-type, accept');
     res.text('Received token: ' + req.params.id);
 });
 
