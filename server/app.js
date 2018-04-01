@@ -8,6 +8,10 @@ app.use(express.static('public'));
 app.use(bodyParser.json())
 const subs = [];
 
+app.get('/check', (req, res) => {
+    res.json('hi!');
+})
+
 app.post('/notify', (req, res) => {
     pushNotification(_.uniq(subs));
     res.json('ok');
