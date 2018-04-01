@@ -5,22 +5,20 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/sleepwalky/map-test.git"
+    "start": "node ./server/app.js",
+    "start-react": "react-scripts start",
+    "build": "react-scripts build",
+    "eject": "react-scripts eject"
   },
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/sleepwalky/map-test/issues"
-  },
-  "homepage": "https://github.com/sleepwalky/map-test#readme",
   "dependencies": {
     "ajax": "0.0.4",
     "body-parser": "^1.18.2",
     "express": "^4.16.3",
-    "firebase-admin": "^5.11.0"
+    "firebase-admin": "^5.11.0",
+    "react": "^16.3.0",
+    "react-dom": "^16.3.0",
+    "react-scripts": "1.1.1"
   }
 }
