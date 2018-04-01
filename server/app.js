@@ -3,15 +3,19 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const { pushNotification } = require('./notipusher');
+const _ = require('lodash');
 app.use(express.static('public'));
 app.use(bodyParser.json())
+const subs = [];
 
 app.post('/notify', (req, res) => {
-    pushNotification();
+    pushNotification(_.uniq(subs));
     res.json('ok');
 })
 
 app.get('/token/:id', (req, res) => {
+    console.log('Received token: ' + req.params.id)
+    subs.push(req.params.id);
     res.send(req.params.id);
 });
 
