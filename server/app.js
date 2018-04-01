@@ -22,7 +22,7 @@ app.get('/token/:id', (req, res) => {
     subs.push(req.params.id);
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Headers', 'origin, content-type, accept');
-    res.text('Received token: ' + req.params.id);
+    res.send('Received token: ' + req.params.id);
 });
 
 const port = process.env.PORT || 8000;
