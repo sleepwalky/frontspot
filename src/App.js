@@ -4,9 +4,49 @@ import './App.css';
 import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps"
 const { compose, withProps } = require("recompose");
 const { DrawingManager } = require("react-google-maps/lib/components/drawing/DrawingManager");
+const inside = require('point-in-polygon');
 
-
+let polygon = [53.928345012510064, 27.685260709192676, 53.928392390746545, 27.685679133799];
 class App extends Component {
+    onDrawingComplete(data) {
+        console.log(data);
+    }
+    // onEnterZone() {
+    //     fetch('https://fronspot-hack.herokuapp.com/notify')
+    // }
+    getPaths(polygon){
+        var coordinates = (polygon.getPath().getArray());
+        polygon = coordinates;
+        return coordinates;
+    }
+    componentDidMount() {
+        function success(pos) {
+            console.log(pos);
+            if(inside(pos, polygon)) {
+                fetch('https://fronspot-hack.herokuapp.com/notify', {
+                    method: 'POST'
+                })
+                .then((data) => {
+                    console.log(data);
+                })
+                .catch((err) => {
+                    console.log(err);
+                })
+            } 
+          }
+          
+          function error(err) {
+            console.warn('ERROR(' + err.code + '): ' + err.message);
+          }
+          
+          const options = {
+            enableHighAccuracy: true,
+            timeout: 3000,
+            maximumAge: 0
+          };
+          
+        window.navigator.geolocation.watchPosition(success, error, options);
+    }
     render() {
         const MapWithADrawingManager = compose(
             withProps({
@@ -23,16 +63,14 @@ class App extends Component {
               defaultCenter={new window.google.maps.LatLng(53.928285,27.6853224)}
             >
               <DrawingManager
-                defaultDrawingMode={window.google.maps.drawing.OverlayType.CIRCLE}
+                onPolygoncomplete={this.onDrawingComplete}
+                defaultDrawingMode={window.google.maps.drawing.OverlayType.POLYGON}
                 defaultOptions={{
                   drawingControl: true,
                   drawingControlOptions: {
                     position: window.google.maps.ControlPosition.TOP_CENTER,
                     drawingModes: [
-                        window.google.maps.drawing.OverlayType.CIRCLE,
-                        window.google.maps.drawing.OverlayType.POLYGON,
-                        window.google.maps.drawing.OverlayType.POLYLINE,
-                        window.google.maps.drawing.OverlayType.RECTANGLE,
+                        window.google.maps.drawing.OverlayType.POLYGON
                     ],
                   },
                   circleOptions: {
@@ -44,6 +82,7 @@ class App extends Component {
                     zIndex: 1,
                   },
                 }}
+                onPolygonComplete={(value) => console.log(this.getPaths(value))}  
               />
             </GoogleMap>
           );

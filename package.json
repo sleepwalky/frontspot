@@ -22,11 +22,12 @@
     "body-parser": "^1.18.2",
     "express": "^4.16.3",
     "firebase-admin": "^5.11.0",
+    "lodash": "^4.17.5",
+    "point-in-polygon": "^1.0.1",
     "react": "^16.3.0",
     "react-dom": "^16.3.0",
     "react-google-maps": "^9.4.5",
-    "react-scripts": "1.1.1",
-    "lodash": "^4.17.5"
+    "react-scripts": "1.1.1"
   },
   "devDependencies": {
     "nodemon": "^1.17.3"
