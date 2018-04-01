@@ -124,14 +124,18 @@ limitations under the License.
   // - subscribe/unsubscribe the token from topics
   function sendTokenToServer(currentToken) {
     if (!isTokenSentToServer()) {
-      console.log('Sending token to server...');
-      // TODO(developer): Send the current token to your server.
+        fetch('https://fronspot-hack.herokuapp.com/token/' + currentToken, { method: 'GET'})
+        .then((res)=>{
+          return res.text()  
+        })
+        .then((data)=>{
+            console.log(data);
+        });
       setTokenSentToServer(true);
     } else {
       console.log('Token already sent to server so won\'t send it again ' +
           'unless it changes');
     }
-
   }
 
   function isTokenSentToServer() {
