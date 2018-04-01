@@ -6,6 +6,13 @@ importScripts('/__/firebase/4.10.0/firebase-messaging.js');
 importScripts('/__/firebase/init.js');
 
 var messaging = firebase.messaging();
+// self.addEventListener('install', function(event) {
+//   event.waitUntil(skipWaiting());
+// });
+
+// self.addEventListener('activate', function(event) {
+//   event.waitUntil(clients.claim());
+// });
 
 /**
  * Here is is the code snippet to initialize Firebase Messaging in the Service
@@ -28,7 +35,9 @@ var messaging = firebase.messaging();
  // messages.
 //  const messaging = firebase.messaging();
  // [END initialize_firebase_in_sw]
- 
+ self.addEventListener('message', function (evt) {
+  console.log('postMessage received', evt.data);
+})
 
 
 // If you would like to customize notifications that are received in the
@@ -41,7 +50,9 @@ messaging.setBackgroundMessageHandler(function(payload) {
   var notificationTitle = 'Background Message Title';
   var notificationOptions = {
     body: payload.data.score,
-    icon: '/firebase-logo.png'
+    icon: '/firebase-logo.png',
+    sound: '/imperial-march.mp3'
+    // vibrate: [500,110,500,110,450,110,200,110,170,40,450,110,200,110,170,40,500]
   };
 
   return self.registration.showNotification(notificationTitle,
